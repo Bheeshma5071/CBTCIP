@@ -3,12 +3,12 @@ class banking_system
 {
     public static void main()
     {
-        String cus_name[]=new String[10];
-        long cus_acc_no[]=new long[10];
-        double cus_bal[]=new double[10];
+        String cus_name[]=new String[5];
+        long cus_acc_no[]=new long[5];
+        double cus_bal[]=new double[5];
 
         Scanner ob=new Scanner(System.in);
-        for(int i=0;i<10;i++)
+        for(int i=0;i<5;i++)
         {
             System.out.println("Enter details of customer no. "+(i+1));
 
@@ -29,23 +29,26 @@ class banking_system
 
         System.out.println();
 
-        System.out.println("1. Withdraw "+"\t"+"2. Deposit"+"\n"+"3. Balance Enquiry"+"\t"+"4. Exit");
-
-        System.out.println("Enter 1,2,3 or 4 to continue");
-        int ch=ob.nextInt();
-
         int v=-1;
 
         System.out.println();
 
-        for(int i=0;i<10;i++)
+        for(int i=0;i<5;i++)
         {
             if(cus_name[i].equalsIgnoreCase(name))
                 v=i;
         }
+        if(v==-1)
+            System.out.println("Customer Does'nt Exist in Data");
 
         while(1>0)
         {
+
+            System.out.println("1. Withdraw "+"\t"+"2. Deposit"+"\n"+"3. Balance Enquiry"+"\t"+"4. Exit");
+
+            System.out.println("Enter 1,2,3 or 4 to continue");
+            int ch=ob.nextInt();
+
             if(ch>=1 && ch<=4)
             {
                 switch(ch)
@@ -54,7 +57,7 @@ class banking_system
                         System.out.println("Enter the amount you want to withdraw");
                         System.out.println("Please enter amount in multiples of 100 or 500");
                         double amt=ob.nextDouble();
-                        
+
                         if(amt>cus_bal[v])
                         {
                             System.out.println("Insufficient Balance");
@@ -78,7 +81,7 @@ class banking_system
 
                         break;
 
-                    case 9:
+                    case 4:
                         System.out.println("Thank You For Using Our Banking System");
                 }
             }
@@ -89,18 +92,22 @@ class banking_system
 
             System.out.print("\n Do you want to continue[Y/N]? : ");
             int y=ob.next().charAt(0);
+
             if(y=='y' || y=='Y')
                 continue;
-            else
+            else 
                 break;
+
         }
-
         System.out.println();
         System.out.println();
 
-        System.out.println("Details of your customer - ");
-        System.out.println("Account holder's name -  "+cus_name[v]);
-        System.out.println("Account holder's account number -  "+cus_acc_no[v]);
-        System.out.println("Account holder's bank balance -  "+cus_bal[v]);
+        if(v!=-1)
+        {
+            System.out.println("Details of your customer - ");
+            System.out.println("Account holder's name -  "+cus_name[v]);
+            System.out.println("Account holder's account number -  "+cus_acc_no[v]);
+            System.out.println("Account holder's bank balance -  "+cus_bal[v]);
+        }
     }
 }
